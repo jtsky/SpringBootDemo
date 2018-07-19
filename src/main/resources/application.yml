@@ -1,0 +1,87 @@
+#spring配置
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/springbootdemo?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+    username: root
+    password: 12345678
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
+  swagger:
+    enabled: true
+    title: demo
+    description: demo
+    version: 1.1
+    contact:
+      name: jint
+    security:
+      filter-plugin: false
+      username: root
+      password: root
+    validator-plugin: false
+
+    #全局参数,比如Token之类的验证信息可以全局话配置
+#    global-operation-parameters:
+#      description: 'Token信息,必填项'
+#      modelRef: 'string'
+#      name: 'Authorization'
+#      parameter-type: 'header'
+#      required: true
+#    groups:
+#      basic-group:
+#        base-package: com.jin.controller.basic
+#      system-group:
+#        base-package: com.battcn.controller.system
+
+
+#mybatis
+mybatis:
+  #mybatis.mapper-locations=classpath:mapper/*.xml
+  #这种方式需要自己在resources目录下创建mapper目录然后存放xml
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 驼峰命名规范 如：数据库字段是  order_id 那么 实体字段就要写成 orderId
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.jin.springboot.bean
+
+
+#server配置
+server:
+  port: 8082
+management: #actuator配置
+  server:
+    port: 54001
+  health:
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      exposure: #开放所有接口
+        include: "*"
+#自定义配置 会被多环境配置文件给覆盖
+my1:
+  age: 28
+  name: jint
+
+########### 通用Mapper ##########
+# 主键自增回写方法,默认值MYSQL,详细说明请看文档
+mapper:
+  identity: MYSQL
+  mappers: tk.mybatis.mapper.common.BaseMapper
+  not-empty: true # 设置 insert 和 update 中，是否判断字符串类型!=''
+  enum-as-simple-type: true # 枚举按简单类型处理
+
+
+########## 分页插件 ##########
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: false
+  support-methods-arguments: true
+

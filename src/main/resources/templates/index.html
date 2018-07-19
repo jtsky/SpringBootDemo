@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+</head>
+<body>
+    <h1 th:text="${desc}">Hello World</h1>
+    <h2>=====作者信息=====</h2>
+    <p th:text="${author.name}">默认</p>
+    <p th:text="${author.age}"></p>
+    <p th:text="${author.email}"></p>
+</body>
+</html>

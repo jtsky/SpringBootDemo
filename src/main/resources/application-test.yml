@@ -1,0 +1,10 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /test
+
+#自定义配置
+my1:
+  age: 28
+  name: jint_test
+
