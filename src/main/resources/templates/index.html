@@ -8,8 +8,46 @@
 <body>
     <h1 th:text="${desc}">Hello World</h1>
     <h2>=====作者信息=====</h2>
-    <p th:text="${author.name}">默认</p>
-    <p th:text="${author.age}"></p>
-    <p th:text="${author.email}"></p>
+    <!--<p th:text="${author.name}">默认</p>-->
+    <!--<p th:text="${author.age}"></p>-->
+    <!--<p th:text="${author.email}"></p>-->
+    <h2>单一文件上传示例</h2>
+    <div>
+        <form method="POST" enctype="multipart/form-data" action="/dev/uploads/upload1">
+            <p>
+                文件1：<input type="file" name="file"/>
+                <input type="submit" value="上传"/>
+            </p>
+        </form>
+    </div>
+
+    <hr/>
+    <h2>批量文件上传示例</h2>
+
+    <div>
+        <form method="POST" enctype="multipart/form-data"
+              action="/dev/uploads/upload2">
+            <p>
+                文件1：<input type="file" name="file"/>
+            </p>
+            <p>
+                文件2：<input type="file" name="file"/>
+            </p>
+            <p>
+                <input type="submit" value="上传"/>
+            </p>
+        </form>
+    </div>
+
+    <hr/>
+    <h2>Base64文件上传</h2>
+    <div>
+        <form method="POST" action="/dev/uploads/upload3">
+            <p>
+                BASE64编码：<textarea name="base64" rows="10" cols="80"></textarea>
+                <input type="submit" value="上传"/>
+            </p>
+        </form>
+    </div>
 </body>
 </html>

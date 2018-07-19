@@ -3,7 +3,20 @@ spring:
   profiles:
     active: dev
   thymeleaf:
-    cache: false
+    cache: false # 禁用 thymeleaf 缓存
+  servlet:
+    multipart:
+      enabled: true # 是否支持批量上传   (默认值 true)
+      location:
+      # 上传文件最大为 1M （默认值 1M 根据自身业务自行控制即可）
+      max-file-size: 1028576
+      # 上传请求最大为 10M（默认值10M 根据自身业务自行控制即可）
+      max-request-size: 10485670
+      # 文件大小阈值，当大于这个阈值时将写入到磁盘，否则存在内存中，（默认值0 一般情况下不用特意修改）
+      file-size-threshold: 0
+      # 判断是否要延迟解析文件（相当于懒加载，一般情况下不用特意修改）
+      resolve-lazily: false
+
   datasource:
     url: jdbc:mysql://localhost:3306/springbootdemo?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
     username: root
@@ -13,31 +26,23 @@ spring:
       ddl-auto: update
     show-sql: true
     database: mysql
-  swagger:
+  swagger: #swagger
     enabled: true
     title: demo
     description: demo
     version: 1.1
     contact:
       name: jint
-    security:
-      filter-plugin: false
-      username: root
-      password: root
-    validator-plugin: false
 
-    #全局参数,比如Token之类的验证信息可以全局话配置
-#    global-operation-parameters:
-#      description: 'Token信息,必填项'
-#      modelRef: 'string'
-#      name: 'Authorization'
-#      parameter-type: 'header'
-#      required: true
-#    groups:
-#      basic-group:
-#        base-package: com.jin.controller.basic
-#      system-group:
-#        base-package: com.battcn.controller.system
+  rabbitmq: #需要安装rabbitmq客户端
+    username: guest
+    password: guest
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual #手动ACK 不开启自动ACK模式,目的是防止报错后未正确处理消息丢失 默认 为 none
 
 
 #mybatis
@@ -84,4 +89,7 @@ pagehelper:
   params: count=countSql
   reasonable: false
   support-methods-arguments: true
+
+debug: true #允许调试
+
 
