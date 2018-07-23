@@ -33,7 +33,7 @@ public class TestController {
         this.myProperties2 = myProperties2;
     }
 
-    @GetMapping("hello")
+    @GetMapping("test_hello")
     @ApiOperation(value = "测试")
     public Map hello() {
         Map<String, String> map = new HashMap<>();
@@ -46,7 +46,7 @@ public class TestController {
 
 
 
-    @GetMapping("index")
+    @GetMapping("test_index")
     public ModelAndView index() {
         ModelAndView view = new ModelAndView();
         // 设置跳转的视图 默认映射到 src/main/resources/templates/{viewName}.html

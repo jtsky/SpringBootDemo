@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
@@ -16,10 +18,16 @@ import tk.mybatis.spring.annotation.MapperScan;
 //注意此处不要引错包
 @MapperScan("com.jin.springbootdemo.dao.mapper")
 @EnableSwagger2Doc
+@EnableWebSocket
 public class SpringbootdemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootdemoApplication.class, args);
+    }
+
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
     }
 
 

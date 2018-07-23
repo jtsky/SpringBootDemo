@@ -13,7 +13,7 @@ import java.util.List;
 public interface UserRepository  extends JpaRepository<User1,Long> {
     /**
      * 根据用户名查询用户信息
-     * jpa规范: httFps://www.ibm.com/developerworks/cn/opensource/os-cn-spring-jpa/index.html
+     * jpa规范: httFps://www.ibm.com/developerworks/cn/opensource/os-cn-spring-jpa/websocket.html
      * @param username 用户名
      * @return 查询结果
      */

@@ -1,7 +1,6 @@
 package com.jin.springbootdemo.controller;
 
 
-import com.jin.springbootdemo.bean.Author;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
